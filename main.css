@@ -1,0 +1,97 @@
+
+html {
+	box-sizing: border-box;
+	font-family: Arial;
+	background-color: white;
+}
+
+#pokemon {
+	width: 600px;
+	border: 2px dashed gray;
+	border-radius: 5px;
+	margin: 0 auto;
+	text-align: center;
+	background-color: #C2F7F2;
+}
+
+#left {
+	float: left;
+	margin-left: 20px;
+	cursor: pointer;
+}
+
+#right {
+	float: right;
+	margin-right: 20px;
+	cursor: pointer;
+}
+
+#sprite {
+	clear: both;
+}
+
+#types {
+	display: inline-block;
+	text-align: center;
+	padding: 2px 5px;
+	border: 2px solid black;
+	border-radius: 10px;
+	margin: 0 .5em 1em;
+	font-size: .7em;
+	width: 9%;
+}
+
+ul {
+	padding: 0;
+	margin: 0;
+	margin-bottom: 1em;
+}
+
+li {
+	display: inline-block;
+	width: 24.99%;
+	text-align: left;
+	padding: .5em;
+	border: 1px dashed gray;
+	border-radius: 6px;
+	margin: 5px;
+}
+
+#user-input {
+	margin: 0 auto 1em;
+	padding: 3px 0 3px 20px;
+	border: 2px solid #e1e8ed;
+	border-radius: 30px;
+	font-family: monospace;
+	background-color: #F5F8FA;
+	font-size: 1.1em;
+	width: 10em;
+	transition: background-color 1s;
+}
+
+#user-input:focus {
+	background-color: white;
+	outline: none;
+}
+
+::-webkit-input-placeholder {
+	color: black;
+}
+
+fieldset {
+	border: 1px solid black;
+	border-radius: 6px;
+	width: 600px;
+	margin: 2em auto 0;
+}
+
+table {
+	height: 3em;
+	width: 1em;
+	background-color: red;
+	margin-top: 100px;
+}
+
+.hidden {
+	display: none;
+}

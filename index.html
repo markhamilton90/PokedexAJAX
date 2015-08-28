@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href="main.css">
+	<link rel="stylesheet" href="assets/font-awesome-4.3.0/css/font-awesome.min.css">
+	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+	<script src="app.js"></script>
+</head>
+<body>
+	<div class="form">
+		<form class="submit-poke">
+			<input type="text" name="poke" id="user-input" placeholder="Search" autofocus>
+			<input type="submit" value="Submit">
+		</form>
+	</div>
+	<div id="pokemon">
+		<h3 id="left"><i class="fa fa-arrow-left"></i></h3>
+		<h3 id="right"><i class="fa fa-arrow-right"></i></h3>
+		<h1 id="dex-number"></h1>
+		<h1 id="entry-name">Venusaur</h1>
+		<div id="sprite"></div>
+		<div id="typing"></div>
+		<div>
+			<ul>
+				<li id="hp">HP: </li><!--
+				--><li id="atk">ATK: </li><!--
+				--><li id="def">DEF: </li><!--
+				--><li id="spa">SPA: </li><!--
+				--><li id="spd">SPD: </li><!--
+				--><li id="spe">SPE: </li>
+			</ul>
+		</div>
+	</div>
+	<div>
+		<fieldset>
+			<legend>Description</legend>
+			<p id="descrip"></p>
+		</fieldset>
+	</div>
+	<!--
+	<input type="text" name="graph" id="graphio">
+	<table cellpadding="20" border="1" id="tabledata"></table>
+-->
+	<div class="templates hidden">
+		<div id="types"></div>
+	</div>
+</body>
+</html>
