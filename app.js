@@ -1,8 +1,9 @@
 $(document).ready( function(){
 
+	getPokemon("venusaur");
 	// I want this to hold a value from getPokemon's returned data
 	// so it can be passed to getPokemonById
-	var current;
+	var current = $('#dex-number');
 	
 	// submit AJAX request to Pokeapi and return a Pokemon
 	// object
@@ -11,7 +12,6 @@ $(document).ready( function(){
 		var entry = $(this).find('input[name="poke"]').val();
 		entry = entry.toLowerCase();
 		getPokemon(entry);
-		console.log(current);
 		$(this).find('input[name="poke"]').val('');
 	});
 
@@ -19,16 +19,28 @@ $(document).ready( function(){
 	// on the page, and using the current displayed object's property
 	// 'pkdx_id' as parameter for new query
 	$('#right').on('click', function(e){
-		console.log(current);
-		var searchTerm = getPokemonById(current);
-		getPokemon(searchTerm);
+		console.log(current.text());
+		getPokemonById(current.text(), true);
 	});
 
+	$('#left').on('click', function(e){
+		console.log(current.text());
+		getPokemonById(current.text(), false);
+	})
+
 	// search for Pokemon object based on pkdx_id property
-	function getPokemonById(current){
-		$.getJSON("http://pokeapi.co/api/v1/pokemon/" + (current + 1) + "/", function(data){
-			console.log(current, data.name);
-			return data.name;
+	function getPokemonById(current, next){
+		current = parseInt(current);
+
+		if (next == true){
+			current += 1;
+		} else {
+			current -= 1;
+		}
+
+		$.getJSON("http://pokeapi.co/api/v1/pokemon/" + current + "/", function(data){
+			//console.log(data.name);
+			getPokemon((data.name).toLowerCase());
 		});
 	}
 
@@ -36,16 +48,22 @@ $(document).ready( function(){
 	// sprite and property fields
 	function getPokemon(entry) {
 		$.getJSON("http://pokeapi.co/api/v1/pokemon/" + entry + "/", function(data){
-			$('#entry-name').text(data.name);
 			$('#dex-number').text(data.pkdx_id);
-			console.log(data);
+			$('#entry-name').text(data.name);
+
+			// get and display the sprite
+			$.getJSON("http://pokeapi.co/api/v1/sprite/" + (data.national_id + 1) + "/", function(newData){
+				$('#sprite').html('<img src="http://pokeapi.co' + newData.image + '">');
+				//console.log(newData.image);
+			});
+
 			// display Pokemon's fighting stats
-			$('#hp').html("HP: &nbsp;" + data.hp);
-			$('#atk').html("ATTACK: &nbsp;" + data.attack);
-			$('#def').html("DEFENSE: &nbsp;" + data.defense);
-			$('#spa').html("SP_ATK: &nbsp;" + data.sp_atk);
-			$('#spd').html("SP_DEF: &nbsp;" + data.sp_def);
-			$('#spe').html("SPEED: &nbsp;" + data.speed);
+			$('#hp').html("HP <hr><p>" + data.hp + "</p>");
+			$('#atk').html("ATTACK <hr><p>" + data.attack + "</p>");
+			$('#def').html("DEFENSE <hr><p>" + data.defense + "</p>");
+			$('#spa').html("SP.ATK <hr><p>" + data.sp_atk + "</p>");
+			$('#spd').html("SP.DEF <hr><p>" + data.sp_def + "</p>");
+			$('#spe').html("SPEED <hr><p>" + data.speed + "</p>");
 
 			// clone and display a div for each of the Pokemon's types
 			$('#typing').html('');
@@ -57,13 +75,40 @@ $(document).ready( function(){
 
 				// color types according to category
 				if (text == "POISON"){
-					result.css({'color': 'purple', 'border': '2px solid purple'});
+					result.css({'color': '#BA55D3', 'border': '2px solid #BA55D3'});
 				}
 				if (text == "GRASS"){
 					result.css({'color': 'green', 'border': '2px solid green'});
 				}
 				if (text == "WATER"){
 					result.css({'color': 'blue', 'border': '2px solid blue'});
+				}
+				if (text == "FIRE"){
+					result.css({'color': '#FF4500', 'border': '2px solid #FF4500'});
+				}
+				if (text == "ICE"){
+					result.css({'color': '#00FFFF', 'border': '2px solid #00FFFF'});
+				}
+				if (text == "GHOST"){
+					result.css({'color': '#4B0082', 'border': '2px solid #4B0082'});
+				}
+				if (text == "PSYCHIC"){
+					result.css({'color': '#FF4500', 'border': '2px solid #FF4500'});
+				}
+				if (text == "FAIRY"){
+					result.css({'color': '#00FFFF', 'border': '2px solid #00FFFF'});
+				}
+				if (text == "STEEL"){
+					result.css({'color': '#4B0082', 'border': '2px solid #4B0082'});
+				}
+				if (text == "BUG"){
+					result.css({'color': '#9ACD32', 'border': '2px solid #9ACD32'});
+				}
+				if (text == "FLYING"){
+					result.css({'color': '#7fb8ff', 'border': '2px solid #7fb8ff'});
+				}
+				if (text == "NORMAL"){
+					result.css({'color': 'tan', 'border': '2px solid tan'});
 				}
 
 			});
@@ -72,32 +117,14 @@ $(document).ready( function(){
 
 			// get description of Pokemon
 			$.getJSON("http://pokeapi.co" + info, function(data){
-				console.log(data);
+				//console.log(data);
 				$('#descrip').text(data.description);
-			})
-
-			// get and display the sprite
-			$.getJSON("http://pokeapi.co/api/v1/sprite/" + (data.national_id + 1) + "/", function(newData){
-				$('#sprite').html('<img src="http://pokeapi.co' + newData.image + '">');
-				console.log(newData.image);
 			});
 
-			saveCurrent($('entry-name').val());
-
-		}).done(function(data){
-			current = data.pkdx_id;
-			console.log(current);
-			saveCurrent(current);
-			});
+		});
 	}
 
-	// I want to add this to the callback function in order to save the 
-	// returned object's pkdx_id value for use as parameter for call to
-	// getPokemonById
-	function saveCurrent(id){
-		console.log($('entry-name').val());
-		current = id;
-	}
+
 
 });
 

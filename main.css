@@ -1,29 +1,48 @@
 
 html {
 	box-sizing: border-box;
-	font-family: Arial;
+	font-family: 'Helvetica Neue', Arial, serif;
 	background-color: white;
 }
 
+body {
+	margin: 0;
+	padding: 0;
+}
+
 #pokemon {
-	width: 600px;
+	width: 660px;
 	border: 2px dashed gray;
 	border-radius: 5px;
-	margin: 0 auto;
+	margin: 1em auto 0;
 	text-align: center;
 	background-color: #C2F7F2;
 }
 
 #left {
+	position: relative;
+	left: 0px;
 	float: left;
 	margin-left: 20px;
 	cursor: pointer;
+	transition-duration: .5s;
+}
+
+#left:hover {
+	left: -5px;
 }
 
 #right {
+	position: relative;
+	left: 0px;
 	float: right;
 	margin-right: 20px;
 	cursor: pointer;
+	transition-duration: .5s;
+}
+
+#right:hover {
+	left: 5px;
 }
 
 #sprite {
@@ -42,30 +61,38 @@ html {
 }
 
 ul {
-	padding: 0;
+	padding: 0 30px;
 	margin: 0;
 	margin-bottom: 1em;
 }
 
 li {
 	display: inline-block;
-	width: 24.99%;
-	text-align: left;
+	width: 12%;
+	text-align: center;
 	padding: .5em;
-	border: 1px dashed gray;
+	border: 1px solid #756969;
 	border-radius: 6px;
 	margin: 5px;
+	background-color: #595959;
+	color: white;
+}
+
+li p {
+	margin: 8px 0 4px;
 }
 
 #user-input {
-	margin: 0 auto 1em;
+	float: left;
+	margin: 2em 0 0 1em;
 	padding: 3px 0 3px 20px;
 	border: 2px solid #e1e8ed;
 	border-radius: 30px;
 	font-family: monospace;
 	background-color: #F5F8FA;
-	font-size: 1.1em;
-	width: 10em;
+	font-size: 1.2em;
+	width: 11em;
+	height: 1.6em;
 	transition: background-color 1s;
 }
 
@@ -79,10 +106,16 @@ li {
 }
 
 fieldset {
-	border: 1px solid black;
+	border: 1px dashed black;
 	border-radius: 6px;
 	width: 600px;
 	margin: 2em auto 0;
+}
+
+legend {
+	font-size: 1.7em;
+	font-weight: bold;
+	text-align: center;
 }
 
 table {
@@ -94,4 +127,15 @@ table {
 
 .hidden {
 	display: none;
+}
+
+@media screen and (max-width: 1147px) {
+	#user-input {
+		display: block;
+		margin: 1em auto;
+		font-size: 1.4em;
+		height: 1.4em;
+		padding-left:;
+		float: none;
+	}
 }
