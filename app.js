@@ -1,5 +1,6 @@
 $(document).ready( function(){
 
+	//
 	// holds value to be passed to getPokemonById
 	var current = $('#dex-number');
 
