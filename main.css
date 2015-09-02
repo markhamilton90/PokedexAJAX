@@ -4,13 +4,15 @@ html {
 	font-family: 'Helvetica Neue', Arial, sans-serif;
 	background-color: white;
 }
-//
 
 body {
 	margin: 0;
 	padding: 0;
 	height: 650px;
-	background: linear-gradient(white, #C2F7F2);
+	background: -webkit-linear-gradient(white, #C2F7F2);
+	background:    -moz-linear-gradient(white, #C2F7F2);
+	background:      -o-linear-gradient(white, #C2F7F2);
+	background:         linear-gradient(white, #C2F7F2);
 }
 
 #user-input {
