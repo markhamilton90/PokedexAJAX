@@ -1,44 +1,68 @@
 
 html {
 	box-sizing: border-box;
-	font-family: 'Helvetica Neue', Arial, serif;
+	font-family: 'Helvetica Neue', Arial, sans-serif;
 	background-color: white;
 }
 
 body {
 	margin: 0;
 	padding: 0;
+	height: 650px;
+	background: linear-gradient(white, #C2F7F2);
+}
+
+#user-input {
+	float: left;
+	margin: 2em 0 0 1em;
+	padding: 3px 0 3px 20px;
+	border: 2px solid #e1e8ed;
+	border-radius: 30px;
+	font-family: monospace;
+	background-color: #F5F8FA;
+	font-size: 1.2em;
+	width: 11em;
+	height: 1.6em;
+	transition: background-color 1s;
+}
+
+#user-input:focus {
+	background-color: white;
+	outline: none;
+}
+
+::-webkit-input-placeholder {
+	color: black;
 }
 
 #pokemon {
 	width: 660px;
 	border: 2px dashed gray;
 	border-radius: 5px;
-	margin: 1em auto 0;
+	margin: 1em auto 5em;
 	text-align: center;
-	background-color: #C2F7F2;
+	/*background: linear-gradient(white, #C2F7F2);*/
+}
+
+#left, #right {
+	position: relative;
+	left: 0px;
+	cursor: pointer;
+	transition-duration: .5s;
 }
 
 #left {
-	position: relative;
-	left: 0px;
 	float: left;
 	margin-left: 20px;
-	cursor: pointer;
-	transition-duration: .5s;
+}
+
+#right {
+	float: right;
+	margin-right: 20px;
 }
 
 #left:hover {
 	left: -5px;
-}
-
-#right {
-	position: relative;
-	left: 0px;
-	float: right;
-	margin-right: 20px;
-	cursor: pointer;
-	transition-duration: .5s;
 }
 
 #right:hover {
@@ -47,6 +71,18 @@ body {
 
 #sprite {
 	clear: both;
+}
+
+#dex-number {
+	margin-bottom: 17px;
+}
+
+#entry-name {
+	margin-top: 17px;
+}
+
+#typing {
+	margin-bottom: .3em;
 }
 
 #types {
@@ -78,51 +114,31 @@ li {
 	color: white;
 }
 
-li p {
+li > p {
 	margin: 8px 0 4px;
 }
 
-#user-input {
-	float: left;
-	margin: 2em 0 0 1em;
-	padding: 3px 0 3px 20px;
-	border: 2px solid #e1e8ed;
-	border-radius: 30px;
-	font-family: monospace;
-	background-color: #F5F8FA;
-	font-size: 1.2em;
-	width: 11em;
-	height: 1.6em;
-	transition: background-color 1s;
+#description {
+	width: 80%;
+	height: auto;
+	margin: 0 auto;
 }
 
-#user-input:focus {
-	background-color: white;
-	outline: none;
-}
-
-::-webkit-input-placeholder {
-	color: black;
-}
-
-fieldset {
-	border: 1px dashed black;
-	border-radius: 6px;
-	width: 600px;
-	margin: 2em auto 0;
-}
-
-legend {
-	font-size: 1.7em;
-	font-weight: bold;
+#description > h1 {
 	text-align: center;
+	font-size: 1.2em;
+	margin-bottom: 3px;
 }
 
-table {
-	height: 3em;
-	width: 1em;
-	background-color: red;
-	margin-top: 100px;
+#description > p {
+	width: 70%;
+	padding: 5px 8px;
+	border: 2px solid #595959;
+	border-radius: 30px;
+	margin: .5em auto 1em;
+	font-style: italic;
+	color: black;
+	background-color: white;
 }
 
 .hidden {

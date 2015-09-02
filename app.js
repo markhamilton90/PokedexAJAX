@@ -1,12 +1,12 @@
 $(document).ready( function(){
 
-	getPokemon("venusaur");
-	// I want this to hold a value from getPokemon's returned data
-	// so it can be passed to getPokemonById
+	// holds value to be passed to getPokemonById
 	var current = $('#dex-number');
+
+	// initial loaded data
+	getPokemon("venusaur");
 	
-	// submit AJAX request to Pokeapi and return a Pokemon
-	// object
+	// submit AJAX request and return Pokemon object
 	$('.submit-poke').submit(function(event){
 		event.preventDefault();
 		var entry = $(this).find('input[name="poke"]').val();
@@ -15,9 +15,8 @@ $(document).ready( function(){
 		$(this).find('input[name="poke"]').val('');
 	});
 
-	// make another request by clicking the right arrow symbol
-	// on the page, and using the current displayed object's property
-	// 'pkdx_id' as parameter for new query
+	// make another request by clicking the arrow symbols on the page, and 
+	// using the current displayed object's property 'pkdx_id' as parameter for new query
 	$('#right').on('click', function(e){
 		console.log(current.text());
 		getPokemonById(current.text(), true);
@@ -54,7 +53,6 @@ $(document).ready( function(){
 			// get and display the sprite
 			$.getJSON("http://pokeapi.co/api/v1/sprite/" + (data.national_id + 1) + "/", function(newData){
 				$('#sprite').html('<img src="http://pokeapi.co' + newData.image + '">');
-				//console.log(newData.image);
 			});
 
 			// display Pokemon's fighting stats
@@ -72,49 +70,10 @@ $(document).ready( function(){
 				var text = type.name.toUpperCase();
 				result.text(text);
 				$('#typing').append(result);
-
-				// color types according to category
-				if (text == "POISON"){
-					result.css({'color': '#BA55D3', 'border': '2px solid #BA55D3'});
-				}
-				if (text == "GRASS"){
-					result.css({'color': 'green', 'border': '2px solid green'});
-				}
-				if (text == "WATER"){
-					result.css({'color': 'blue', 'border': '2px solid blue'});
-				}
-				if (text == "FIRE"){
-					result.css({'color': '#FF4500', 'border': '2px solid #FF4500'});
-				}
-				if (text == "ICE"){
-					result.css({'color': '#00FFFF', 'border': '2px solid #00FFFF'});
-				}
-				if (text == "GHOST"){
-					result.css({'color': '#4B0082', 'border': '2px solid #4B0082'});
-				}
-				if (text == "PSYCHIC"){
-					result.css({'color': '#FF4500', 'border': '2px solid #FF4500'});
-				}
-				if (text == "FAIRY"){
-					result.css({'color': '#00FFFF', 'border': '2px solid #00FFFF'});
-				}
-				if (text == "STEEL"){
-					result.css({'color': '#4B0082', 'border': '2px solid #4B0082'});
-				}
-				if (text == "BUG"){
-					result.css({'color': '#9ACD32', 'border': '2px solid #9ACD32'});
-				}
-				if (text == "FLYING"){
-					result.css({'color': '#7fb8ff', 'border': '2px solid #7fb8ff'});
-				}
-				if (text == "NORMAL"){
-					result.css({'color': 'tan', 'border': '2px solid tan'});
-				}
-
+				checkTypes(text, result);
 			});
 
 			var info = data.descriptions[0].resource_uri;
-
 			// get description of Pokemon
 			$.getJSON("http://pokeapi.co" + info, function(data){
 				//console.log(data);
@@ -122,6 +81,64 @@ $(document).ready( function(){
 			});
 
 		});
+	}
+
+	// colors #types div based on the name of its type
+	function checkTypes(text, result){
+		if (text == "GRASS"){
+			result.css({'color': '#78C850', 'border': '2px solid #78C850'});
+		}
+		else if (text == "POISON"){
+			result.css({'color': '#A040A0', 'border': '2px solid #A040A0'});
+		}
+		else if (text == "WATER"){
+			result.css({'color': '#6890F0', 'border': '2px solid #6890F0'});
+		}
+		else if (text == "FIRE"){
+			result.css({'color': '#F08030', 'border': '2px solid #F08030'});
+		}
+		else if (text == "ICE"){
+			result.css({'color': '#98D8D8', 'border': '2px solid #98D8D8'});
+		}
+		else if (text == "GHOST"){
+			result.css({'color': '#705898', 'border': '2px solid #705898'});
+		}
+		else if (text == "PSYCHIC"){
+			result.css({'color': '#F85888', 'border': '2px solid #F85888'});
+		}
+		else if (text == "FAIRY"){
+			result.css({'color': '#EE99AC', 'border': '2px solid #EE99AC'});
+		}
+		else if (text == "STEEL"){
+			result.css({'color': '#B8B8D0', 'border': '2px solid #B8B8D0'});
+		}
+		else if (text == "BUG"){
+			result.css({'color': '#A8B820', 'border': '2px solid #A8B820'});
+		}
+		else if (text == "FLYING"){
+			result.css({'color': '#A890F0', 'border': '2px solid #A890F0'});
+		}
+		else if (text == "NORMAL"){
+			result.css({'color': '#A8A878', 'border': '2px solid #A8A878'});
+		}
+		else if (text == "DRAGON"){
+			result.css({'color': '#7038F8', 'border': '2px solid #7038F8'});
+		}
+		else if (text == "ELECTRIC"){
+			result.css({'color': '#F8D030', 'border': '2px solid #F8D030'});
+		}
+		else if (text == "FIGHTING"){
+			result.css({'color': '#C03028', 'border': '2px solid #C03028'});
+		}
+		else if (text == "GROUND"){
+			result.css({'color': '#E0C068', 'border': '2px solid #E0C068'});
+		}
+		else if (text == "ROCK"){
+			result.css({'color': '#B8A038', 'border': '2px solid #B8A038'});
+		}
+		else if (text == "DARK"){
+			result.css({'color': '#705848', 'border': '2px solid #705848'});
+		}
 	}
 
 });
