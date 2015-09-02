@@ -148,13 +148,12 @@ li > p {
 	display: none;
 }
 
-@media screen and (max-width: 1147px) {
-	#user-input {
-		display: block;
-		margin: 1em auto;
-		font-size: 1.4em;
-		height: 1.4em;
-		padding-left:;
-		float: none;
+@media screen and (max-width: 690px) {
+	#pokemon {
+		width: 90%;
+	}
+
+	#dex-number {
+		width: 100%;
 	}
 }
